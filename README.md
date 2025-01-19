@@ -1,11 +1,11 @@
 ## Birchsoft.Azure.Function.Identity
 
-<div style='padding:0.1em; background-color:#d7eaf8; color:#004173; border:solid 3px #004173'>
-<p style='margin:2em; text-align:justify'>
-<b>Important:</b><br>
-    The NuGet package supports only Azure Functions using the isolated worker model and validates JWT issued by Azure App Registrations.
-</p>
-</div>
+---
+## **Important:**
+
+The NuGet package supports only Azure Functions using the isolated worker model and validates JWT issued by Azure App Registrations.
+
+---
 
 The `Birchsoft.Azure.Function.Identity` package simplifies Azure HTTP Trigger Function Authentication by utilizing JSON Web Tokens (JWT).
 
