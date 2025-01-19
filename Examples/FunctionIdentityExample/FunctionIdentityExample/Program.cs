@@ -19,7 +19,7 @@ namespace FunctionIdentityExample
                 })
                 .ConfigureFunctionsWebApplication(worker =>
                 {
-                    worker.UseAzFunctionIdentityMiddleware(true);
+                    worker.UseAzFunctionIdentityMiddleware(false);
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
