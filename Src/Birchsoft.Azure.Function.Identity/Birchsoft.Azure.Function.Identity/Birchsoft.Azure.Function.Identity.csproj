@@ -4,8 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Authors>Slawomir Brzozowski</Authors>
-    <Title></Title>
+    <Authors>Birchsoft</Authors>
+    <Title>Birchsoft.Azure.Function.Identity by Birchsoft</Title>
     <PackageProjectUrl>https://github.com/Birchsoft/Birchsoft.Azure.Function.Identity</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/Birchsoft/Birchsoft.Azure.Function.Identity</RepositoryUrl>
@@ -13,6 +13,7 @@
     <PackageTags>Azure; function; isolated; worker; model; authentication; authorization; identity; JWT; token</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Description>Simplifies Azure HTTP Trigger Function Authentication by utilizing JSON Web Tokens (JWT)</Description>
   </PropertyGroup>
 
   <ItemGroup>
