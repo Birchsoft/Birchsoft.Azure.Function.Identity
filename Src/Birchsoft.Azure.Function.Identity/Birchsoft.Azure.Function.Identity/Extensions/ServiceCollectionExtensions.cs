@@ -6,7 +6,7 @@ namespace Birchsoft.Azure.Function.Identity.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddAzFunctionAuthTokenConfig(this IServiceCollection services, IConfiguration configuration, string? authSettingsJsonName = null)
+        public static IServiceCollection AddAzFunctionIdentityConfig(this IServiceCollection services, IConfiguration configuration, string? authSettingsJsonName = null)
         {
             services.Configure<AzureMEID>(configuration.GetSection(nameof(AzureMEID)));
 

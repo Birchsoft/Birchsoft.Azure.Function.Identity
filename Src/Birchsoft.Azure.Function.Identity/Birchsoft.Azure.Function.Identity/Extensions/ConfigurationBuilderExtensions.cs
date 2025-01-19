@@ -5,7 +5,7 @@ namespace Birchsoft.Azure.Function.Identity.Extensions
 {
     public static class ConfigurationBuilderExtensions
     {
-        public static IConfigurationBuilder AddAzFunctionAuthJsonConfig(this IConfigurationBuilder builder, HostBuilderContext context, string? authSettingsJsonName = null)
+        public static IConfigurationBuilder AddAzFunctionIdentityJsonConfig(this IConfigurationBuilder builder, HostBuilderContext context, string? authSettingsJsonName = null)
         {
             if (string.IsNullOrWhiteSpace(authSettingsJsonName))
             {

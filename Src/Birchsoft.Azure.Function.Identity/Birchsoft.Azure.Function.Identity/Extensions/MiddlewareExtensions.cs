@@ -8,7 +8,7 @@ namespace Birchsoft.Azure.Function.Identity.Extensions
 {
     public static class MiddlewareExtensions
     {
-        public static void UseAzFunctionAuthMiddleware(this IFunctionsWorkerApplicationBuilder worker, bool detailedErrorMessage = false)
+        public static IFunctionsWorkerApplicationBuilder UseAzFunctionIdentityMiddleware(this IFunctionsWorkerApplicationBuilder worker, bool detailedErrorMessage = false)
         {
             worker.Services.Configure<ErrorMessageConfig>(options =>
             {
@@ -25,6 +25,8 @@ namespace Birchsoft.Azure.Function.Identity.Extensions
                 return context.FunctionDefinition.InputBindings.Values
                           .First(a => a.Type.EndsWith("Trigger")).Type == "httpTrigger";
             });
+
+            return worker;
         }
     }
 }
