@@ -5,15 +5,15 @@ namespace Birchsoft.Azure.Function.Identity.Extensions
 {
     public static class ConfigurationBuilderExtensions
     {
-        public static IConfigurationBuilder AddAzFunctionIdentityJsonConfig(this IConfigurationBuilder builder, HostBuilderContext context, string? authSettingsJsonName = null)
+        public static IConfigurationBuilder AddAzFunctionIdentityJsonConfig(this IConfigurationBuilder builder, HostBuilderContext context, string? identitySettingsJsonName = null)
         {
-            if (string.IsNullOrWhiteSpace(authSettingsJsonName))
+            if (string.IsNullOrWhiteSpace(identitySettingsJsonName))
             {
-                authSettingsJsonName = "auth.settings.json";
+                identitySettingsJsonName = "identity.settings.json";
             }
 
             builder.SetBasePath(context.HostingEnvironment.ContentRootPath)
-                .AddJsonFile(authSettingsJsonName, optional: false, reloadOnChange: true);
+                .AddJsonFile(identitySettingsJsonName, optional: false, reloadOnChange: true);
 
             return builder;
         }
