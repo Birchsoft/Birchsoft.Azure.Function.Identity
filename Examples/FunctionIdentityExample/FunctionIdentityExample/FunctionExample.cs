@@ -29,5 +29,13 @@ namespace FunctionIdentityExample
             _logger.LogInformation("C# HTTP trigger function processed a request FunctionAuth.");
             return new OkObjectResult("Welcome to Azure FunctionAuth!");
         }
+
+        [AppRoles("Admin", "User")]
+        [Function("FunctionAuthRoles")]
+        public IActionResult RunAuthRoles([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
+        {
+            _logger.LogInformation("C# HTTP trigger function processed a request FunctionAuthRoles.");
+            return new OkObjectResult("Welcome to Azure FunctionAuthRoles!");
+        }
     }
 }
