@@ -10,31 +10,16 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/Birchsoft/Birchsoft.Azure.Function.Identity</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>Azure; function; isolated; worker; model; authentication; authorization; identity; JWT; token</PackageTags>
+		<PackageTags>Azure; function; isolated; worker; model; middleware; role; roles; authentication; authorization; identity; JWT; token</PackageTags>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<Description>Simplifies Azure HTTP Trigger Function Authentication by utilizing JSON Web Tokens (JWT)</Description>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<VersionPrefix>1.0.1</VersionPrefix>
+		<VersionPrefix>1.0.2</VersionPrefix>
 		<PackageIcon>Logo_JPG.jpg</PackageIcon>
-		<PackageReleaseNotes>Update Readme.md</PackageReleaseNotes>
+		<PackageReleaseNotes>Added an attribute to allow token authentication based on roles.</PackageReleaseNotes>
 		<IncludeSymbols>False</IncludeSymbols>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Include="..\..\..\..\..\..\..\Documents\Logo Birchsoft\Logo_JPG.jpg">
-		  <Pack>True</Pack>
-		  <PackagePath>\</PackagePath>
-		</None>
-		<None Include="..\..\..\LICENSE">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-		<None Include="..\..\..\README.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Azure.Functions.Worker" Version="2.0.0" />
@@ -43,6 +28,21 @@
 		<PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="8.3.1" />
 		<PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.3.1" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.3.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="LICENSE">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Update="Logo_JPG.jpg">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Update="README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>

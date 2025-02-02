@@ -10,22 +10,22 @@ namespace Birchsoft.Azure.Function.Identity.Authentication
 {
     internal class TokenValidator
     {
-        internal async Task<ClaimsPrincipal> ValidateToken(string token, AzureMEID data)
+        internal async Task<ClaimsPrincipal> Validate(IdentitySettings dto, AzureMEID data)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(token))
+                if (string.IsNullOrWhiteSpace(dto.JWToken))
                 {
                     throw new SecurityTokenException("Token is missing.");
                 }
 
-                var configurationManager = GetOpenIdConnectConfiguration(token, data.TenantId);
+                var configurationManager = GetOpenIdConnectConfiguration(dto.JWToken, data.TenantId);
                 var openIdConfig = await configurationManager.GetConfigurationAsync(CancellationToken.None);
 
                 var validationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
-                    ValidIssuer = GetIssuer(token, data.TenantId),
+                    ValidIssuer = GetIssuer(dto.JWToken, data.TenantId),
 
                     ValidateAudience = true,
                     ValidAudience = data.Audience,
@@ -37,8 +37,8 @@ namespace Birchsoft.Azure.Function.Identity.Authentication
                     {
                         if (jwToken is JwtSecurityToken jwt)
                         {
-                            var subClaim = jwt.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
-                            var tidClaim = jwt.Claims.FirstOrDefault(c => c.Type == "tid")?.Value;
+                            var subClaim = jwt.Claims.FirstOrDefault(c => c.Type == JwtClaim.Subject)?.Value;
+                            var tidClaim = jwt.Claims.FirstOrDefault(c => c.Type == JwtClaim.TenantID)?.Value;
 
                             if (subClaim != data.ObjectId)
                             {
@@ -63,7 +63,7 @@ namespace Birchsoft.Azure.Function.Identity.Authentication
                 };
 
                 var handler = new JwtSecurityTokenHandler();
-                var principal = handler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
+                var principal = handler.ValidateToken(dto.JWToken, validationParameters, out SecurityToken validatedToken);
 
                 if (validatedToken != null && validatedToken is JwtSecurityToken jwt &&
                     jwt.Header.Alg.Equals(SecurityAlgorithms.None, StringComparison.OrdinalIgnoreCase))
@@ -85,7 +85,7 @@ namespace Birchsoft.Azure.Function.Identity.Authentication
             var handler = new JwtSecurityTokenHandler();
             var jwtTokenObj = handler.ReadJwtToken(token);
             var claims = jwtTokenObj.Claims;
-            var jwtVersion = claims.FirstOrDefault(c => c.Type == "ver")?.Value;
+            var jwtVersion = claims.FirstOrDefault(c => c.Type == JwtClaim.Version)?.Value;
 
             if (!string.IsNullOrEmpty(jwtVersion))
             {
@@ -107,7 +107,7 @@ namespace Birchsoft.Azure.Function.Identity.Authentication
             var handler = new JwtSecurityTokenHandler();
             var jwtTokenObj = handler.ReadJwtToken(token);
             var claims = jwtTokenObj.Claims;
-            var jwtVersion = claims.FirstOrDefault(c => c.Type == "ver")?.Value;
+            var jwtVersion = claims.FirstOrDefault(c => c.Type == JwtClaim.Version)?.Value;
 
             if (!string.IsNullOrEmpty(jwtVersion))
             {

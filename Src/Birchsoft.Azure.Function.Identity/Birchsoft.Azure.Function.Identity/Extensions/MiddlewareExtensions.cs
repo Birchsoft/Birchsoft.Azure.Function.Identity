@@ -15,7 +15,7 @@ namespace Birchsoft.Azure.Function.Identity.Extensions
                 options.ShowDetailedErrorMessages = detailedErrorMessage;
             });
 
-            worker.UseWhen<AddItemToContextMiddleware>((context) =>
+            worker.UseWhen<PreValidateTokenMiddleware>((context) =>
             {
                 return context.FunctionDefinition.InputBindings.Values
                           .First(a => a.Type.EndsWith("Trigger")).Type == "httpTrigger";
